@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "Research_paper_fetcher"
+version = "0.1.0"
+description = "Fetch PubMed papers with non-academic (company) authors"
+authors = ["Prajwal  <prajwal.ise.rymec@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "Research_paper_fetcher" }]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+biopython = "^1.83"
+pandas = "^2.2.2"
+
+[tool.poetry.scripts]
+get-papers-list = "Research_paper_fetcher.cli:main"
