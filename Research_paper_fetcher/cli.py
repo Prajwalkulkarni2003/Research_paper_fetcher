@@ -14,7 +14,7 @@ def main():
     try:
         if args.debug:
             print(f"Running query: {args.query}")
-        ids = search_pubmed(args.query)
+        ids = search_pubmed(args.query)  ##This searches PubMed with the query the user gave.
         if args.debug:
             print(f"Found {len(ids)} papers")
 

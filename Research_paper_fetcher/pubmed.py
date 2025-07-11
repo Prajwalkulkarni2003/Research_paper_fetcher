@@ -10,17 +10,17 @@ Entrez.email = "prajwal.ise.rymec@gmail.com"
 NON_ACADEMIC_KEYWORDS = ["Pharma", "Biotech", "Inc", "Ltd", "Corp", "Corporation"]
 ACADEMIC_KEYWORDS = ["University", "Institute", "Hospital", "School", "College", "Lab"]
 
-def search_pubmed(query: str, max_results: int = 20) -> List[str]:
+def search_pubmed(query: str, max_results: int = 20) -> List[str]:  ##connects to PubMed and gets paper IDs
     handle = Entrez.esearch(db="pubmed", term=query, retmax=max_results)
     results = Entrez.read(handle)
     return results["IdList"]
 
-def fetch_pubmed_details(pubmed_ids: List[str]) -> List[Dict]:
+def fetch_pubmed_details(pubmed_ids: List[str]) -> List[Dict]:   ##fetches author details and filters those with company names using a list of keywords like "Inc", "Ltd", "Pharma", etc.
     handle = Entrez.efetch(db="pubmed", id=",".join(pubmed_ids), rettype="medline", retmode="text")
     records = handle.read()
     return parse_medline_records(records)
 
-def parse_medline_records(records: str) -> List[Dict]:
+def parse_medline_records(records: str) -> List[Dict]:    ##It cleans and converts that messy data into Python-friendly dictionaries, like this:
     result = []
     papers = records.split("\n\n")
     for paper in papers:
@@ -45,6 +45,6 @@ def parse_medline_records(records: str) -> List[Dict]:
             result.append(paper_data)
     return result
 
-def results_to_csv(results: List[Dict], filename: str):
+def results_to_csv(results: List[Dict], filename: str):   ##saves the filtered results into a .csv file.
     df = pd.DataFrame(results)
     df.to_csv(filename, index=False)
