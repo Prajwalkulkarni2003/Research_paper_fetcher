@@ -63,8 +63,8 @@ This project uses **Poetry** for dependency management.
 
 ### Step 2: Clone the Repository
 
-    git clone https://github.com/yourusername/pubmed-company-paper-fetcher.git
-    cd pubmed-company-paper-fetcher
+    git clone https://https://github.com/Prajwalkulkarni2003/Research_paper_fetcher.git
+    cd Research-paper-fetcher
 
 Or download the ZIP file and extract it.
 
