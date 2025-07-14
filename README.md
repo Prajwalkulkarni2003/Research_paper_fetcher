@@ -1,13 +1,13 @@
 from pathlib import Path
 
 readme_text = """
-# 🧪 Research Paper Fetcher (Command-Line Tool)
+#  Research Paper Fetcher (Command-Line Tool)
 
 This is a beginner-friendly Python CLI tool that helps you **search research papers from PubMed** and filters them to show only those with **authors affiliated with pharmaceutical or biotech companies** (like Pfizer, Roche, AstraZeneca, etc.).
 
 ---
 
-## 🔍 What Is This Tool?
+##  What Is This Tool?
 
 This tool connects to [PubMed](https://pubmed.ncbi.nlm.nih.gov/), a free search engine for life science and biomedical research papers.
 
@@ -18,7 +18,7 @@ Instead of showing *all* papers, this tool:
 
 ---
 
-## 💡 Why Should You Use This?
+##  Why Should You Use This?
 
 Let’s say you want to:
 - Research **industry involvement** in cancer, diabetes, or COVID
@@ -29,17 +29,17 @@ This tool makes it super easy. Just run a command, and it gives you a ready-to-u
 
 ---
 
-## ✨ Features
+##  Features
 
-- 🔍 Search any PubMed topic (e.g., "cancer AND 2023[dp]")
-- 🧪 Detect non-academic (company) affiliations
-- 📄 Save results as `.csv` (Excel compatible)
-- ⚙️ CLI-based and beginner-friendly
-- 🐍 Built with Biopython, Pandas, Poetry
+-  Search any PubMed topic (e.g., "cancer AND 2023[dp]")
+-  Detect non-academic (company) affiliations
+-  Save results as `.csv` (Excel compatible)
+-  CLI-based and beginner-friendly
+-  Built with Biopython, Pandas, Poetry
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 Research_paper_fetcher/
 ├── Research_paper_fetcher/
@@ -53,7 +53,7 @@ Research_paper_fetcher/
 
 ---
 
-## 🛠️ Setup (Step-by-Step)
+##  Setup (Step-by-Step)
 
 This project uses **Poetry** for dependency management.
 
@@ -86,7 +86,7 @@ PubMed requires this for API usage tracking.
 
 ---
 
-## 🚀 How to Use the Tool
+##  How to Use the Tool
 
 ### Basic Usage
 
@@ -109,7 +109,7 @@ Print results to terminal (instead of saving):
 
 ---
 
-## 📄 Example CSV Output
+##  Example CSV Output
 
 | PubMed ID | Title                  | Publication Date | Company Affiliation   | Email              |
 |-----------|------------------------|------------------|------------------------|--------------------|
@@ -118,7 +118,7 @@ Print results to terminal (instead of saving):
 
 ---
 
-## 🏢 What Company Names Are Detected?
+##  What Company Names Are Detected?
 
 The tool filters based on keywords found in the affiliation line:
 
@@ -135,30 +135,30 @@ You can edit the list in `pubmed.py`:
 
 ---
 
-## ❓ FAQ
+##  FAQ
 
 **Can I use this without knowing Python?**  
-✅ Yes! Just copy-paste commands in your terminal.
+ Yes! Just copy-paste commands in your terminal.
 
 **Will it work on Windows?**  
-✅ Yes. Works on Windows, macOS, and Linux (Python + Poetry required).
+ Yes. Works on Windows, macOS, and Linux (Python + Poetry required).
 
 **Does it include university papers?**  
-❌ No. It only includes papers with **company-affiliated** authors.
+ No. It only includes papers with **company-affiliated** authors.
 
 **Can I add more filters or export to Excel?**  
-✅ Yes! You can extend it using `pandas` to filter more, or save as `.xlsx`.
+ Yes! You can extend it using `pandas` to filter more, or save as `.xlsx`.
 
 ---
 
-## ⚙️ Example Commands
+##  Example Commands
 
     poetry run get-papers-list "diabetes AND 2023[dp]" -f diabetes.csv
     poetry run get-papers-list "covid AND 2022[dp]" -d
 
 ---
 
-## 🧠 How It Works (In Simple Terms)
+##  How It Works (In Simple Terms)
 
 1. You enter a PubMed search query  
 2. The tool sends this query to PubMed using Biopython  
@@ -169,7 +169,7 @@ You can edit the list in `pubmed.py`:
 
 ---
 
-## 🔧 Technologies Used
+##  Technologies Used
 
 - BioPython – PubMed API access
 - Pandas – Data processing
@@ -177,14 +177,14 @@ You can edit the list in `pubmed.py`:
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Prajwal R K**  
 Built for educational, research, and technical demonstration purposes.
 
 ---
 
-## 📌 License
+##  License
 
 Free to use for research and educational purposes.  
 Follow PubMed’s API guidelines and provide a valid email in all requests.
