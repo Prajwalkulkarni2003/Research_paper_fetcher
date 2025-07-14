@@ -1,187 +1,198 @@
-#  Research_paper_fetche(Command Line Tool)
+from pathlib import Path
 
-This is a beginner-friendly command-line Python tool that helps you **search research papers from PubMed** and filters them to show only those with **authors affiliated with pharmaceutical or biotech companies** (like Pfizer, Roche, AstraZeneca, etc.).
+readme_text = """
+# 🧪 Research Paper Fetcher (Command-Line Tool)
+
+This is a beginner-friendly Python CLI tool that helps you **search research papers from PubMed** and filters them to show only those with **authors affiliated with pharmaceutical or biotech companies** (like Pfizer, Roche, AstraZeneca, etc.).
 
 ---
 
-##  What Is This Tool?
+## 🔍 What Is This Tool?
 
 This tool connects to [PubMed](https://pubmed.ncbi.nlm.nih.gov/), a free search engine for life science and biomedical research papers.
 
-Instead of showing **all papers**, this tool:
+Instead of showing *all* papers, this tool:
 - Finds authors who **work in companies**, not just universities or hospitals
 - Filters and shows only those research papers
-- Saves the filtered results into a **CSV file (Excel-style)** for easy reading
+- Saves the filtered results into a **CSV file (Excel-friendly)**
 
 ---
 
-##  Why Should You Use This?
+## 💡 Why Should You Use This?
 
 Let’s say you want to:
 - Research **industry involvement** in cancer, diabetes, or COVID
 - Track what **pharma companies** are working on
 - Avoid manual searching and filtering on the PubMed website
 
- This tool makes it super easy. Just type one command, and it gives you a ready-to-use CSV file with clean results.
+This tool makes it super easy. Just run a command, and it gives you a ready-to-use CSV with filtered results.
 
 ---
 
-##  Features
+## ✨ Features
 
--  Search any PubMed topic (e.g., `"cancer AND 2023[dp]"`)
--  Filters authors who work in **non-academic companies**
--  Exports results as `.csv` (Excel compatible)
--  Command-line friendly, fast, and beginner-safe
+- 🔍 Search any PubMed topic (e.g., "cancer AND 2023[dp]")
+- 🧪 Detect non-academic (company) affiliations
+- 📄 Save results as `.csv` (Excel compatible)
+- ⚙️ CLI-based and beginner-friendly
+- 🐍 Built with Biopython, Pandas, Poetry
 
 ---
 
-##  Project Structure
+## 📁 Project Structure
 
 Research_paper_fetcher/
-├── Research_paper_fetche/
-│ ├── init.py
-│ ├── pubmed.py ← Logic to query PubMed and filter company authors
-│ └── cli.py ← Command-line interface (CLI)
+├── Research_paper_fetcher/
+│   ├── __init__.py
+│   ├── pubmed.py         # Core logic to query and filter papers
+│   └── cli.py            # Command-line interface
 ├── tests/
-│ └── test_pubmed.py ← (Optional) Test file
-├── pyproject.toml ← Poetry config file (dependencies, commands)
-└── README.md ← You are here!
-
-yaml
-Copy
-Edit
+│   └── test_pubmed.py    # (Optional) Unit tests
+├── pyproject.toml        # Poetry config
+└── README.md             # You're reading this
 
 ---
 
-##  How to Set It Up (Step by Step)
+## 🛠️ Setup (Step-by-Step)
 
-This project uses **[Poetry](https://python-poetry.org/)** — a tool that manages Python projects easily.
+This project uses **Poetry** for dependency management.
 
-###  Step 1: Install Poetry
+### Step 1: Install Poetry
 
-If not installed, run:
+    pip install poetry
 
-```bash
-pip install poetry
-Step 2: Download or Clone the Project
-If using Git:
+### Step 2: Clone the Repository
 
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/pubmed-company-paper-fetcher.git
-cd pubmed-company-paper-fetcher
+    git clone https://github.com/yourusername/pubmed-company-paper-fetcher.git
+    cd pubmed-company-paper-fetcher
+
 Or download the ZIP file and extract it.
 
-Step 3: Install Dependencies
-Inside the project folder:
+### Step 3: Install Dependencies
 
-bash
-Copy
-Edit
-poetry install
-This installs required libraries:
+    poetry install
 
-biopython → used to connect with PubMed API
+This installs:
+- `biopython` → to access the PubMed API
+- `pandas` → to generate the CSV file
 
-pandas → used to save data into CSV
+### Step 4: Set Your Email
 
-Step 4: Set Your Email (required for PubMed access)
-Open the file pubmed.py and update this line:
+Open `pubmed.py` and update this line with your real email:
 
-python
-Copy
-Edit
-Entrez.email = "your_email@example.com"
-Change it to your real email. PubMed uses it for API usage tracking.
+    Entrez.email = "your_email@example.com"
 
-How to Use the Tool
-Run the tool from your terminal like this:
+PubMed requires this for API usage tracking.
 
-bash
-Copy
-Edit
-poetry run get-papers-list "YOUR SEARCH TERM" -f output.csv
-Example:
-bash
-Copy
-Edit
-poetry run get-papers-list "cancer AND 2023[dp]" -f cancer_results.csv
-This will:
+---
 
-Search for cancer-related papers published in 2023
+## 🚀 How to Use the Tool
 
-Filter only papers where at least one author is from a company
+### Basic Usage
 
-Save the results to cancer_results.csv
+    poetry run get-papers-list "YOUR SEARCH TERM" -f output.csv
 
-Debug Mode (Optional)
-If you want to see results in the terminal instead of saving to file:
+### Example:
 
-bash
-Copy
-Edit
-poetry run get-papers-list "diabetes AND insulin" -d
-The -d or --debug option prints all filtered records to the screen.
+    poetry run get-papers-list "cancer AND 2023[dp]" -f cancer_results.csv
 
-Example CSV Output
-After running, you’ll get a file like this:
+This:
+- Searches cancer papers from 2023
+- Filters only papers with company-affiliated authors
+- Saves results to `cancer_results.csv`
 
-PubMed ID	Title	Publication Date	Company Affiliation	Email
-12345678	New Drug for Cancer	2023	Pfizer Inc	john@pfizer.com
-12345679	Biotech Vaccine Study	2023	Genentech Ltd	dr.smith@gentech.com
+### Debug Mode
 
- What Company Names Are Detected?
-This tool checks for keywords in the author's affiliation such as:
+Print results to terminal (instead of saving):
 
-"Inc", "Ltd", "Corp", "Pharma", "Biotech"
+    poetry run get-papers-list "diabetes AND insulin" -d
 
-"Pfizer", "Roche", "AstraZeneca", etc.
+---
 
-You can edit this list inside pubmed.py under:
+## 📄 Example CSV Output
 
-python
-Copy
-Edit
-NON_ACADEMIC_KEYWORDS = [...]
+| PubMed ID | Title                  | Publication Date | Company Affiliation   | Email              |
+|-----------|------------------------|------------------|------------------------|--------------------|
+| 12345678  | New Drug for Cancer    | 2023             | Pfizer Inc             | john@pfizer.com    |
+| 12345679  | Biotech Vaccine Study  | 2023             | Genentech Ltd          | dr.smith@genetech.com |
 
+---
 
- Can I use this without knowing Python?
- Yes. You only need to copy-paste commands in the terminal.
+## 🏢 What Company Names Are Detected?
 
- Can I use this on Windows?
- Yes. Works on Windows, macOS, or Linux with Python installed.
+The tool filters based on keywords found in the affiliation line:
 
- Will it show university papers?
- No. It filters out academic authors and only keeps company-affiliated ones.
+**Included if it contains:**  
+"Inc", "Ltd", "Corp", "Pharma", "Biotech", "Pfizer", "Roche", etc.
 
- Can I add more filters or save as Excel?
- Yes! This tool uses pandas, so you can easily enhance it later.
+**Excluded if it contains:**  
+"University", "Hospital", "School", "Institute", "Lab", "College"
 
-### Example Commands
-bash
-Copy
-Edit
-# Search papers from 2023 related to diabetes and save to file
-poetry run get-papers-list "diabetes AND 2023[dp]" -f diabetes.csv
+You can edit the list in `pubmed.py`:
 
-# Show filtered papers in terminal only (no file)
-poetry run get-papers-list "covid AND 2022[dp]" -d
+    NON_ACADEMIC_KEYWORDS = ["Pharma", "Biotech", "Inc", "Ltd", "Corp"]
+    ACADEMIC_KEYWORDS = ["University", "Institute", "Hospital", "School", "College", "Lab"]
 
-How It Works (In Simple Language)
+---
 
-You type a search topic
-The tool sends this to PubMed's database
-It receives a list of research papers
-It looks at each paper’s authors and affiliations
-It filters out authors from companies, not universities
-It saves this filtered list into a CSV file for you
+## ❓ FAQ
 
+**Can I use this without knowing Python?**  
+✅ Yes! Just copy-paste commands in your terminal.
 
+**Will it work on Windows?**  
+✅ Yes. Works on Windows, macOS, and Linux (Python + Poetry required).
 
-This tool is built using:
+**Does it include university papers?**  
+❌ No. It only includes papers with **company-affiliated** authors.
 
-BioPython
-Pandas
-PubMed API
-Poetry
+**Can I add more filters or export to Excel?**  
+✅ Yes! You can extend it using `pandas` to filter more, or save as `.xlsx`.
+
+---
+
+## ⚙️ Example Commands
+
+    poetry run get-papers-list "diabetes AND 2023[dp]" -f diabetes.csv
+    poetry run get-papers-list "covid AND 2022[dp]" -d
+
+---
+
+## 🧠 How It Works (In Simple Terms)
+
+1. You enter a PubMed search query  
+2. The tool sends this query to PubMed using Biopython  
+3. It fetches the list of matching papers  
+4. It checks each author’s affiliation  
+5. If any author is from a company, it saves the paper  
+6. You get a filtered CSV file with results
+
+---
+
+## 🔧 Technologies Used
+
+- BioPython – PubMed API access
+- Pandas – Data processing
+- Poetry – Dependency management
+
+---
+
+## 👨‍💻 Author
+
+**Prajwal R K**  
+Built for educational, research, and technical demonstration purposes.
+
+---
+
+## 📌 License
+
+Free to use for research and educational purposes.  
+Follow PubMed’s API guidelines and provide a valid email in all requests.
+"""
+
+# Save to text file
+readme_path = Path("/mnt/data/README_PubMedFetcher.txt")
+readme_path.write_text(readme_text.strip())
+
+readme_path
+
